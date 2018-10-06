@@ -1,8 +1,8 @@
 # netcore-assignment
 
-This is a starting repo all assignments for the class should be completed in. It contains the minimum requirements for an assignment repository:
+This is a starting point for an assignments repo. It contains the minimum requirements for an assignment repository:
 * .gitignore - prevents tracking of files that do not need tracking
-* README.md - explains what the repository is for
+* README.md - explains what the repository
 
 ## Getting setup
 1. Make a new directory under your documents folder: `mkdir ~\Documents\ACA`
