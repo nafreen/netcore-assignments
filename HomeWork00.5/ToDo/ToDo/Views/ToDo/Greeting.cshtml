@@ -1,0 +1,20 @@
+﻿@model string;
+@{
+    ViewData["Title"] = "MyView";
+    
+}
+<h2>MyView</h2>
+<p>
+    @Model  World (from the view)
+</p>
+
+<p>
+
+    @ViewData["SpanishGreeting"]  World (in Spanish)
+
+</p>
+<p>
+
+    @ViewBag.SpanishGreeting  World (in Spanish again)
+
+</p>

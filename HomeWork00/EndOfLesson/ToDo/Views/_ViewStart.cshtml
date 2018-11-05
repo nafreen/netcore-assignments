@@ -1,0 +1,14 @@
+﻿
+@{
+    int min = DateTime.Now.Minute;
+
+    if (min % 2 == 0)
+    {
+        Layout = "~/Views/Shared/_MyLayout.cshtml";
+
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+}
