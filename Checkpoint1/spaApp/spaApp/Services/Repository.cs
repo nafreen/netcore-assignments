@@ -47,28 +47,10 @@ namespace spaApp.Services
             usersAppointment.customer = _customer.Find(x => x.Id == usersAppointment.customer?.Id);
             usersAppointment.provider = _provider.Find(x => x.Id == usersAppointment.provider?.Id);
 
-            //Checking for User should be able to book any customer with any service provider, as long 
-            //as there is not already a appointment at that time.
-
-            foreach (var x in _usersAppointment)
-            {
-                if (x.customer.Id.Equals(usersAppointment.customer.Id) && x.Create.Equals(usersAppointment.Create))
-                {
-                    throw new ArgumentException("Sorry the appointment time is not available.");
-                    
-                }
-
-                if (x.provider.Id.Equals(usersAppointment.provider.Id) && x.Create.Equals(usersAppointment.Create))
-                {
-
-                    throw new ArgumentException("Sorry the Provider is not available.");
-                }
-            }
-
-
-            _usersAppointment.Add(usersAppointment);
+            checkAppointment(usersAppointment);
             
-          
+            _usersAppointment.Add(usersAppointment);
+
         }
 
 
@@ -80,6 +62,8 @@ namespace spaApp.Services
             usersAppointment.customer = _customer.Find(x => x.Id == usersAppointment.customer?.Id);
             usersAppointment.provider = _provider.Find(x => x.Id == usersAppointment.provider?.Id);
 
+            checkAppointment(usersAppointment);
+            
             _usersAppointment.Insert(index, usersAppointment);
         }
 
@@ -145,6 +129,27 @@ namespace spaApp.Services
             return _provider.Find(x => x.Id == id);
         }
 
-          
+        public static void  checkAppointment(UsersAppointment usersAppointment)
+        {
+            foreach (var x in _usersAppointment)
+            {
+                if (x.customer.Id.Equals(usersAppointment.customer.Id) && x.Create.Equals(usersAppointment.Create))
+                {
+                    throw new Exception("Customer has a conflicting appointment.");
+
+                }
+
+                if (x.provider.Id.Equals(usersAppointment.provider.Id) && x.Create.Equals(usersAppointment.Create))
+                {
+
+                    throw new ArgumentException("Provider has a conflicting appointment.");
+                }
+            }
+
+
+        }
+
+
+
     }
 }

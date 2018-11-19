@@ -41,16 +41,15 @@ namespace spaApp.Controllers
                     Repository.Add(userAppointment);
                     return RedirectToAction(nameof(Index));
                 }
-                catch
+                catch (Exception e)
                 {
+                    ModelState.AddModelError("", e.Message);
                     return View();
                 }
             
             
         }
-
         
-
         // GET: UserAppointment/Edit/5
         public ActionResult Edit(int id)
         {
@@ -68,8 +67,9 @@ namespace spaApp.Controllers
                 Repository.Update(id,usersAppointment);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", e.Message);
                 return View();
             }
         }
